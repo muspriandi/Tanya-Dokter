@@ -83,7 +83,7 @@
 		<!-- Tab Panduan -->
 		<div id="panduan" class="container">
 			<br>
-			<div class="section mb-4">
+			<div class="section">
 				<h4 class="light-blue-text text-lighten-2 mb-0">Panduan Pengguna</h4>
 				<p class="light-text mt-0">Panduan untuk menggunaan fitur Tanya Dokter<p>
 				<!-- Timeline -->
@@ -138,31 +138,33 @@
 		</div>
 		
 		<!-- Tab Tanya Dokter -->
-		<div id="tanya-dokter" class="parallax-container valign-wrapper">
-			<div class="section no-pad-bot">
-			<div class="container">
-				<div class="row center">
-				<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-				</div>
-			</div>
-			</div>
-			<div class="parallax"><img src="assets/img/background2.jpg" alt="Unsplashed background img 2"></div>
-		</div>
-		
-		<!-- Tab Artikel Kesehatan -->
-		<div id="artikel" class="container">
+		<div id="tanya-dokter" class="container">
 			<br>
 			<div class="section">
 				<div class="row">
 					<div class="col s12 center">
-						<h3><i class="mdi-content-send brown-text"></i></h3>
-						<h4>Contact Us</h4>
+						<h4 class="light-blue-text text-lighten-2 mb-0">Tanya Dok!</h4>
+						<p class="light-text mt-0">Tanya Gejala Yang Diderita Anak</p>
 						<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 					</div>
 				</div>
 			</div>
 		</div>
 		
+		<!-- Tab Artikel Kesehatan -->
+		<div id="artikel" class="container">
+			<br>
+			<div class="section">
+				<div class="right-align">
+					<h4 class="light-blue-text text-lighten-2 mb-0">Artikel</h4>
+					<p class="light-text mt-0">Artikel Kesehatan Menarik</p>
+				</div>
+				<div class="row center" id="article"><!-- DIISI DARI API.JS --></div>
+				<div class="center m-3">
+					<button type="button" class="btn light-blue text-lighten-2 waves-effect waves-light my-3" id="tampil">Tampilkan Lebih Banyak <i class="material-icons right">queue_play_next</i></button>
+				</div>
+			</div>
+		</div>
 		<div class="parallax-container valign-wrapper">
 			<div class="section no-pad-bot">
 			<div class="container">
@@ -214,6 +216,7 @@
 		<!--  Scripts-->
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/materialize.min.js"></script>
+		<script src="assets/js/api.js"></script>
 		<script src="assets/js/custom.js"></script>
 	</body>
 </html>

@@ -7,4 +7,12 @@ $(document).ready(function(){
 	$('.scrollspy').scrollSpy();
 	$('.tooltipped').tooltip();
     $('.parallax').parallax();
+	
+	$("#tampil").on("click", function(e){
+		e.preventDefault();
+		$(".article:hidden").slice(0, 3).slideDown();
+		if($(".article:hidden").length == 0) {
+			$("#tampil").hide();
+		}
+	});
 });
