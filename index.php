@@ -13,20 +13,21 @@
 	</head>
 	<body>
 		<!-- Navigasi -->
-		<div class="navbar-fixed">
-			<nav class="white" role="navigation">
-				<div class="nav-wrapper container">
-					<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-					<a id="logo-container" href="#" class="brand-logo">
-						<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
-						<span class="hide-on-small-only teal-text lighten-2 pb-3" style="position: relative; top: -12px;">Tanya Dokter<span>
-					</a>
-					<ul class="right hide-on-med-and-down">
-						<li><a class="tooltipped btn waves-effect waves-light" href="#" data-position="bottom" data-tooltip="Masuk Sebagai Pengelola"><i class="material-icons left">exit_to_app</i>Masuk</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
+		<nav style="box-shadow: none;" class="p-3" role="navigation">
+			<div class="nav-wrapper container">
+				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<a id="logo-container" href="#" class="brand-logo">
+					<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
+					<span class="hide-on-small-only teal-text lighten-2 pb-3" style="position: relative; top: -12px;">Tanya Dokter<span>
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a class="tooltipped btn waves-effect waves-light pulse" href="#" data-position="bottom" data-tooltip="Masuk Sebagai Pengelola" id="masuk"><i class="material-icons left">exit_to_app</i>Masuk</a></li>
+				</ul>
+			</div>
+			<div class="progress-container" style="display: none;">
+				<div class="progress-bar teal lighten-2"></div>
+			</div>
+		</nav>
 		<ul id="slide-out" class="sidenav">
 			<li>
 				<a href="#perkenalan">
@@ -44,9 +45,9 @@
 		
 		<!-- Tab Perkenalan -->
 		<div id="perkenalan">
-			<div id="index-banner" class="parallax-container">
+			<div id="index-banner" class="parallax-container" style="min-height: 425px;">
 				<div class="section no-pad-bot">
-					<div class="container">
+					<div class="container mt-5">
 						<br><br>
 						<h1 class="header center teal-text text-lighten-2">Tanya Dokter</h1>
 						<div class="row center">
@@ -86,6 +87,7 @@
 			<div class="section">
 				<h4 class="light-blue-text text-lighten-2 mb-0">Panduan Pengguna</h4>
 				<p class="light-text mt-0">Panduan untuk menggunaan fitur Tanya Dokter<p>
+				
 				<!-- Timeline -->
 				<div class="timeline">
 					<div class="timeline-event">
@@ -134,6 +136,7 @@
 						<div class="timeline-badge green white-text"><i class="material-icons">person</i></div>
 					</div>
 				</div>
+				<span class="dots"></span>
 			</div>
 		</div>
 		
@@ -148,6 +151,7 @@
 						<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 					</div>
 				</div>
+				<span class="squiggle"></span>
 			</div>
 		</div>
 		
@@ -171,7 +175,15 @@
 			<div class="section no-pad-bot">
 			<div class="container">
 				<div class="row center">
-				<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+					<div class="col s12 m4">
+						<img src="./assets/img/icon-1.png" alt="Logo Dicoding" width="150px;" />
+					</div>
+					<div class="col s12 m4">
+						<img src="./assets/img/icon-3.png" alt="Logo Dicoding" width="250px;" />
+					</div>
+					<div class="col s12 m4">
+						<img src="./assets/img/icon-2.png" alt="Logo Indosat Ooredoo" width="100px;" />
+					</div>
 				</div>
 			</div>
 			</div>
