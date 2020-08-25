@@ -8,8 +8,8 @@
 		
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	</head>
 	<body>
 		<!-- Navigasi -->
@@ -18,7 +18,7 @@
 				<div class="nav-wrapper container">
 					<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 					<a id="logo-container" href="#" class="brand-logo">
-						<img class="mt-1" src="assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
+						<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
 						<span class="hide-on-small-only teal-text lighten-2 pb-3" style="position: relative; top: -12px;">Tanya Dokter<span>
 					</a>
 					<ul class="right hide-on-med-and-down">
@@ -30,7 +30,7 @@
 		<ul id="slide-out" class="sidenav">
 			<li>
 				<a href="#perkenalan">
-					<img class="mt-1" src="assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/> 
+					<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/> 
 					<span class="teal-text lighten-2 ml-2" style="position: relative; top: -18px; font-size: 20px; font-weight: normal;">Tanya Dokter<span>
 				</a>
 			</li>
@@ -55,14 +55,14 @@
 						<br><br>
 					</div>
 				</div>
-				<div class="parallax"><img src="assets/img/background1.jpg" alt="Unsplashed background img 1"></div>
+				<div class="parallax"><img src="./assets/img/background1.jpg" alt="Unsplashed background img 1"></div>
 			</div>
 		</div>
 		
 		<div class="row mb-0 divider-card">
 			<div class="col s10 offset-s1 m2 offset-m3">
 				<div class="icon-block card-panel p-3 z-depth-3">
-					<h4 class="center orange-text text-lighten-2"><i class="material-icons">flash_on</i></h4>
+					<h4 class="center orange-text text-lighten-2"><i class="material-icons">zoom_in</i></h4>
 					<h6 class="center">Speeds up development</h6><br>
 				</div>
 			</div>	
@@ -75,7 +75,7 @@
 			<div class="col s10 offset-s1 m2">
 				<div class="icon-block card-panel p-3 z-depth-3">
 					<h4 class="center orange-text text-lighten-2"><i class="material-icons">settings</i></h4>
-					<h6 class="center">Easy to work with with with</h6><br>
+					<h6 class="center">Easy to work with and reliable</h6><br>
 				</div>
 			</div>
 		</div>
@@ -159,7 +159,9 @@
 					<h4 class="light-blue-text text-lighten-2 mb-0">Artikel</h4>
 					<p class="light-text mt-0">Artikel Kesehatan Menarik</p>
 				</div>
-				<div class="row center" id="article"><!-- DIISI DARI API.JS --></div>
+				<div class="row center" id="article">
+					<!-- DIISI MELALUI API.JS -->
+				</div>
 				<div class="center m-3">
 					<button type="button" class="btn light-blue text-lighten-2 waves-effect waves-light my-3" id="tampil">Tampilkan Lebih Banyak <i class="material-icons right">queue_play_next</i></button>
 				</div>
@@ -173,23 +175,24 @@
 				</div>
 			</div>
 			</div>
-			<div class="parallax"><img src="assets/img/background3.jpg" alt="Unsplashed background img 3"></div>
+			<div class="parallax"><img src="./assets/img/background3.jpg" alt="Unsplashed background img 3"></div>
 		</div>
 		
 		<!-- Tab Tentang -->
 		<footer class="page-footer teal">
 			<div class="container" id="tentang">
 				<div class="row mb-4">
-					<div class="col m8 s12">
+					<div class="col m9 s12">
 						<h5 class="white-text mt-0">
-							<img src="assets/img/icons/medical-192x192.png" alt="Logo" width="50px;" />
+							<img src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;" />
 							<span class="ml-2" style="position: relative; top: -15px; font-size: 20px; font-weight: normal;">Tanya Dokter<span>
 						</h5>
 						<p class="grey-text text-lighten-4 m-0">
-							Aplikasi Diagnosa Penyakit Anak Melalui Pendekatan Sistem Pakar Menggunakan <i>Certainty Factor</i>.
+							Aplikasi <strong>Tanya Dokter</strong> merupakan sebuah aplikasi web yang dapat mendiagnosa suatu penyakit dengan input(masukan) berupa 
+							gejala-gejala yang dialami anak. Sistem ini dibangun berdasarkan pendekatan metode sistem pakar menggunakan <i>Certainty Factor</i>.
 						</p>
 					</div>
-					<div class="col m4 s12">
+					<div class="col m3 s12">
 						<h6 class="white-text">Komponen Web :</h6>
 						<ul>
 							<li><a class="white-text" href="http://materializecss.com" target="_blank">- Materialize</a></li>
@@ -214,9 +217,9 @@
 		</footer>
 
 		<!--  Scripts-->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/materialize.min.js"></script>
-		<script src="assets/js/api.js"></script>
-		<script src="assets/js/custom.js"></script>
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/materialize.min.js"></script>
+		<script src="./assets/js/api.js"></script>
+		<script src="./assets/js/custom.js"></script>
 	</body>
 </html>

@@ -11,7 +11,7 @@ $.getJSON('http://newsapi.org/v2/top-headlines?country=id&category=health&apiKey
 							<div class="col s12 m4 article">
 								<div class="card z-depth-2">
 									<div class="card-image">
-										<img src="${data.articles[i].urlToImage}" height="130px">
+										<img src="${data.articles[i].urlToImage}" onerror="imgError(this)" height="130px">
 									</div>
 									<div class="card-content left-align light">
 										<h6 class="mt-0 judul-artikel">${data.articles[i].title}</h6>
@@ -30,3 +30,11 @@ $.getJSON('http://newsapi.org/v2/top-headlines?country=id&category=health&apiKey
 	
 	$(".article").slice(0, 3).show();
 });
+
+
+// FUNGSI 'ON ERROR' KETIKA URL IMG GAGAL DIBUKA ATAU RUSAK
+function imgError(image) {
+	image.onerror 	= "";
+	image.src 		= "./assets/img/image"+ (Math.floor(Math.random() * 3) + 1) +".jpeg";
+	return true;
+}
