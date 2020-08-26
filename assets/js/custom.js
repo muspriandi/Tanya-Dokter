@@ -9,6 +9,8 @@ $(document).ready(function(){
     $('.parallax').parallax();
 	$('select').formSelect();
 	
+	$(".article").slice(0, 3).show();
+	
 	$(window).on('scroll', function() {
 		let docHeight = $(document).height(),
 			winHeight = $(window).height();
@@ -44,10 +46,9 @@ $(document).ready(function(){
 		}
 	});
 	
-	//jQuery time
-	var current_fs, next_fs, previous_fs; //fieldsets
-	var left, opacity, scale; //fieldset properties which we will animate
-	var animating; //flag to prevent quick multi-click glitches
+	let current_fs, next_fs, previous_fs; //fieldsets
+	let left, opacity, scale; //fieldset properties which we will animate
+	let animating; //flag to prevent quick multi-click glitches
 	
 	$(".next").click(function(){
 		if(animating) return false;
@@ -120,40 +121,162 @@ $(document).ready(function(){
 		});
 	});
 	
+	$("#gejala_dominan").change(function(){
+		let gejala_dominan	= $(this).val();
+		
+		if(gejala_dominan) {
+			let gelaja_resesif 	= "";
+			
+			$.ajax({
+				url: "./ajax_call.php",
+				type: "POST",
+				data : {"gejala_dominan":gejala_dominan, "kode":0},
+				dataType: "json",
+				success:function(data) {
+					
+					console.log(data);
+					
+					if(data) {
+						if(data.length > 1) {
+							for(i=0; i<2; i++) {
+								gelaja_resesif += 	`
+														<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
+															<label>Apakah anak Anda mengalami gejala <strong>`+ data[i] +`</strong> juga?</label>
+															<p class="mt-5 left-align">
+																<label class="mr-5">
+																	<input type="radio" class="validate with-gap" name="gejala_resesif[`+ [i] +`]" value="`+ data[i] +`">
+																	<span>Ya</span>
+																</label>
+																<label>
+																	<input type="radio" class="validate with-gap" name="gejala_resesif[`+ [i] +`]" value="">
+																	<span>Tidak</span>
+																</label>
+															</p>
+														</div>
+													`;
+							}
+						}
+						else {
+							gelaja_resesif += 	`
+													<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
+														<label>Apakah anak Anda mengalami gejala <strong>`+ data[0] +`</strong> juga?</label>
+														<p class="mt-5 left-align">
+															<label class="mr-5">
+																<input type="radio" class="validate with-gap" name="gejala_resesif" value="`+ data[0] +`">
+																<span>Ya</span>
+															</label>
+															<label>
+																<input type="radio" class="validate with-gap" name="gejala_resesif" value="">
+																<span>Tidak</span>
+															</label>
+														</p>
+													</div>
+												`;
+						}
+					}
+										
+					$('#gejala_resesif').html(gelaja_resesif);
+				},
+				error:function(x) {
+					// console.log(x.responseText);
+				}
+			});
+		}
+	});
+	
 	$(".submit").click(function(){
-		if(animating) return false;
-		animating = true;
 		
-		current_fs = $(this).parent();
-		next_fs = $(this).parent().next();
-		
-		//activate next step on progressbar using the index of next_fs
-		$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-		
-		//show the next fieldset
-		next_fs.show(); 
-		//hide the current fieldset with style
-		current_fs.animate({opacity: 0}, {
-			step: function(now, mx) {
-				//as the opacity of current_fs reduces to 0 - stored in "now"
-				//1. scale current_fs down to 80%
-				scale = 1 - (1 - now) * 0.2;
-				//2. bring next_fs from the right(50%)
-				left = (now * 50)+"%";
-				//3. increase opacity of next_fs to 1 as it moves in
-				opacity = 1 - now;
-				current_fs.css({'transform': 'scale('+scale+')', 'position': 'absolute' });
-				next_fs.css({'left': left, 'opacity': opacity});
-			}, 
-			duration: 800, 
-			complete: function(){
-				current_fs.hide();
-				animating = false;
-			}, 
-			//this comes from the custom easing plugin
-			easing: 'easeInOutBack'
-		});
-		
-		return false;
+		if($("#gejala_dominan").val().length === 0) {
+			
+			console.log("VALIDASI DULU");
+			
+			return false;
+		}
+		else {
+			let nama = document.forms["msform"]["nama_pasien"].value;
+			let usia = document.forms["msform"]["usia_pasien"].value;
+			let gejala_dominan = $("#gejala_dominan").val();
+			let gejala_resesif = document.forms["msform"]["gejala_resesif[0]"].value;
+			let gejala_resesif2 = document.forms["msform"]["gejala_resesif[1]"].value;
+			
+			console.log(nama,usia,gejala_dominan,gejala_resesif, gejala_resesif2);
+			
+			let hasil_pemeriksaan 	= "";
+			
+			$.ajax({
+				url: "./ajax_call.php",
+				type: "POST",
+				data : {"gejala_dominan":gejala_dominan, "gejala_resesif":gejala_resesif, "gejala_resesif2":gejala_resesif2, "kode":1},
+				dataType: "json",
+				success:function(data) {
+					
+					console.log(data);
+					
+					if(data) {
+							hasil_pemeriksaan += 	`
+														<div class="col m12 s12">
+															<p class="light-text">Hasil pemeriksaan oleh sistem menunjukan bahwa: Ananda <strong>` + nama + `(` + usia + `)</strong></p>
+														</div>
+														<div class="col m3 s12 offset-m2">
+															<h5 class="py-2">` + data[0] + `%</h5>
+														</div>
+														<div class="col m5 s12">
+															<p class="light-text left-align">Dinyatakan positif terkena penyakit <strong>` + data[1] + `</strong>.</p>
+														</div>
+													`;
+					}
+					else {
+						console.log(x.responseText);
+					}
+					
+					$('#hasil_pemeriksaan').html(hasil_pemeriksaan);
+				},
+				error:function(x) {
+					console.log(x.responseText);
+				}
+			});
+			
+			if(animating) return false;
+			animating = true;
+			
+			current_fs = $(this).parent();
+			next_fs = $(this).parent().next();
+			
+			//activate next step on progressbar using the index of next_fs
+			$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+			
+			//show the next fieldset
+			next_fs.show(); 
+			//hide the current fieldset with style
+			current_fs.animate({opacity: 0}, {
+				step: function(now, mx) {
+					//as the opacity of current_fs reduces to 0 - stored in "now"
+					//1. scale current_fs down to 80%
+					scale = 1 - (1 - now) * 0.2;
+					//2. bring next_fs from the right(50%)
+					left = (now * 50)+"%";
+					//3. increase opacity of next_fs to 1 as it moves in
+					opacity = 1 - now;
+					current_fs.css({'transform': 'scale('+scale+')', 'position': 'absolute' });
+					next_fs.css({'left': left, 'opacity': opacity});
+				}, 
+				duration: 800, 
+				complete: function(){
+					current_fs.hide();
+					animating = false;
+				}, 
+				//this comes from the custom easing plugin
+				easing: 'easeInOutBack'
+			});
+			
+			return false;
+		}
 	})
 });
+
+// FUNGSI 'ON ERROR' KETIKA URL IMG GAGAL DIBUKA ATAU RUSAK
+function imgError(image) {
+	image.onerror 	= "";
+	image.src 		= "./assets/img/image"+ (Math.floor(Math.random() * 3) + 1) +".jpeg";
+	return true;
+}
