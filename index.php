@@ -136,7 +136,7 @@
 						<div class="timeline-badge green white-text"><i class="material-icons">person</i></div>
 					</div>
 				</div>
-				<span class="dots"></span>
+				<span class="dots hide-on-small-only "></span>
 			</div>
 		</div>
 		
@@ -148,10 +148,78 @@
 					<div class="col s12 center">
 						<h4 class="light-blue-text text-lighten-2 mb-0">Tanya Dok!</h4>
 						<p class="light-text mt-0">Tanya Gejala Yang Diderita Anak</p>
-						<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+						
+						<!-- MultiStep Form -->
+						<form id="msform">
+							<!-- progressbar -->
+							<ul id="progressbar">
+								<li class="active">Identitas Anak</li>
+								<li>Gejala-gejala</li>
+								<li>Hasil Pemeriksaan</li>
+							</ul>
+							<!-- fieldsets -->
+							<fieldset>
+								<h4 class="light-blue-text text-lighten-2 mb-0">Identitas Anak</h4>
+								<p class="light-text mt-0">Mohon untuk mengisi kolom di bawah ini</p>
+								<div class="row my-0 center">
+									<div class="input-field col m4 s12 offset-m4">
+										<i class="material-icons prefix">person</i>
+										<input id="nama_pasien" type="text"/>
+										<label for="nama_pasien">Nama Lengkap Anak</label>
+									</div>
+									</br>
+									<div class="input-field col m4 s12 offset-m4">
+										<i class="material-icons prefix">account_box</i>
+										<input id="usia_pasien" type="number" min="1" max="10">
+										<label for="usia_pasien">Usia Anak</label>
+									</div>
+								</div>
+								<button type="button" name="next" class="next btn light-blue text-lighten-2 waves-effect waves-light my-3">Selanjutnya <i class="material-icons right">navigate_next</i></button>
+							</fieldset>
+							<fieldset>
+								<h4 class="light-blue-text text-lighten-2 mb-0">Gejala-gejala</h4>
+								<p class="light-text mt-0">Gejala apa sajakah yang muncul pada anak?</p>
+								<div class="row my-4 center">
+									<div class="input-field col m6 s12 offset-m3">
+										<select multiple>
+											<option disabled selected>Gelaja yang dominan</option>
+											<option value="1">Option 1</option>
+											<option value="2">Option 2</option>
+											<option value="1">Option 1</option>
+											<option value="2">Option 2</option>
+											<option value="3">Option 3</option>
+											<option value="3">Option 3</option>
+											<option value="1">Option 1</option>
+											<option value="2">Option 2</option>
+											<option value="3">Option 3</option>
+										</select>
+										<label>Silakan berikan tanda <i>check</i>(<i class="material-icons tiny" style="position: relative; top: 4px;">check</i>) pada:</label>
+									</div>
+								</div>
+								<button type="button" name="previous" class="previous btn light-teal text-lighten-2 waves-effect waves-light my-3 mr-3">Kembali <i class="material-icons left">navigate_before</i></button>
+								<button type="submit" name="submit" class="submit btn light-blue text-lighten-2 waves-effect waves-light my-3">Diagnosa! <i class="material-icons right">trending_up</i></button>
+							</fieldset>
+							<fieldset>
+								<div class="mx-4">
+									<h4 class="light-blue-text text-lighten-2 mb-0">Hasil Pemeriksaan</h4>
+									<div class="row center">
+										<div class="col m12 s12">
+											<p class="light-text">Hasil pemeriksaan oleh sistem menunjukan bahwa: Anande NAMA ANAK ANDA DI SINI</p>
+										</div>
+										<div class="col m3 s12 offset-m2">
+											<h5 class="py-2">85.46%</h5>
+										</div>
+										<div class="col m5 s12">
+											<p class="light-text left-align">Dinyatakan positif terkena penyakit <strong>Demam Berdarah Dengue (DBD)</strong>.</p>
+										</div>
+									</div>
+								</div>
+								<button type="button" name="previous" class="previous btn light-teal text-lighten-2 waves-effect waves-light my-3">Kembali <i class="material-icons left">navigate_before</i></button>
+							</fieldset>
+						</form>
 					</div>
 				</div>
-				<span class="squiggle"></span>
+				<span class="squiggle hide-on-small-only "></span>
 			</div>
 		</div>
 		
@@ -175,13 +243,13 @@
 			<div class="section no-pad-bot">
 			<div class="container">
 				<div class="row center">
-					<div class="col s12 m4">
+					<div class="col s12 m4 py-2">
 						<img src="./assets/img/icon-1.png" alt="Logo Dicoding" width="150px;" />
 					</div>
-					<div class="col s12 m4">
+					<div class="col s12 m4 py-2">
 						<img src="./assets/img/icon-3.png" alt="Logo Dicoding" width="250px;" />
 					</div>
-					<div class="col s12 m4">
+					<div class="col s12 m4 py-2">
 						<img src="./assets/img/icon-2.png" alt="Logo Indosat Ooredoo" width="100px;" />
 					</div>
 				</div>
@@ -233,5 +301,6 @@
 		<script src="./assets/js/materialize.min.js"></script>
 		<script src="./assets/js/api.js"></script>
 		<script src="./assets/js/custom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 	</body>
 </html>
