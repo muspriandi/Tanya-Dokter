@@ -1,3 +1,7 @@
+<?php
+	include('koneksi.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -182,11 +186,7 @@
 								<div class="row my-4 center">
 									<div class="input-field col m6 s12 offset-m3 mb-2">
 										<select multiple id="gejala_dominan">
-											<option disabled selected>Gelaja yang dominan</option>
-											<option value="A">Option A</option>
-											<option value="B">Option B</option>
-											<option value="C">Option C</option>
-											<option value="D">Option D</option>
+											<!-- DIISI MELALUI CUSTOM.JS -->
 										</select>
 										<label>Silakan berikan tanda <i>check</i>(<i class="material-icons tiny" style="position: relative; top: 4px;">check</i>) pada:</label>
 									</div>
@@ -223,27 +223,6 @@
 				</div>
 				<div class="row center" id="article">
 					<!-- DIISI MELALUI API.JS -->
-					<?php
-						for($i=1; $i<=6; $i++) {
-							echo '
-								<div class="col s12 m4 article">
-									<div class="card z-depth-2">
-										<div class="card-image">
-											<img src="#" onerror="imgError(this)" height="130px">
-										</div>
-										<div class="card-content left-align light">
-											<h6 class="mt-0 judul-artikel">Hubungkan ke Jaringan! -- Artikel '.$i.'</h6>
-											<small><p class="right-align m-0">Sumber: Sumber Artikel</p></small>
-											<p class="isi-artikel">Silakan hubungkan ke jaringan terlebih dahulu...<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-										</div>
-										<div class="card-action right-align">
-											<a class="m-0 waves-effect waves-light" href="#" target="_blank">Baca Lebih Lanjut <i class="material-icons right">chevron_right</i></a>
-										</div>
-									</div>
-								</div>
-							';	
-						}
-					?>
 				</div>
 				<div class="center m-3">
 					<button type="button" class="btn light-blue text-lighten-2 waves-effect waves-light my-3" id="tampil">Tampilkan Lebih Banyak <i class="material-icons right">queue_play_next</i></button>

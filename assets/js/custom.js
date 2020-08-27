@@ -9,6 +9,8 @@ $(document).ready(function(){
     $('.parallax').parallax();
 	$('select').formSelect();
 	
+	getGejala();
+	
 	$(".article").slice(0, 3).show();
 	
 	$(window).on('scroll', function() {
@@ -122,6 +124,7 @@ $(document).ready(function(){
 	});
 	
 	$("#gejala_dominan").change(function(){
+		
 		let gejala_dominan	= $(this).val();
 		
 		if(gejala_dominan) {
@@ -130,21 +133,28 @@ $(document).ready(function(){
 			$.ajax({
 				url: "./ajax_call.php",
 				type: "POST",
-				data : {"gejala_dominan":gejala_dominan, "kode":0},
+				data : {"gejala_dominan":gejala_dominan, "kode":1},
 				dataType: "json",
 				success:function(data) {
 					
-					console.log(data);
-					
-					if(data) {
+					if(data.length !== 0) {
 						if(data.length > 1) {
-							for(i=0; i<2; i++) {
+							
+							let x;
+							if(data.length > 2) {
+								x = 3;
+							}
+							else {
+								x = 2;
+							}
+							
+							for(i=0; i<x; i++) {
 								gelaja_resesif += 	`
 														<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
-															<label>Apakah anak Anda mengalami gejala <strong>`+ data[i] +`</strong> juga?</label>
+															<label>Apakah anak Anda mengalami gejala <strong>`+ data[i]['nama_gejala'] +`</strong> juga?</label>
 															<p class="mt-5 left-align">
 																<label class="mr-5">
-																	<input type="radio" class="validate with-gap" name="gejala_resesif[`+ [i] +`]" value="`+ data[i] +`">
+																	<input type="radio" class="validate with-gap" name="gejala_resesif[`+ [i] +`]" value="`+ data[i]['kode_gejala'] +`">
 																	<span>Ya</span>
 																</label>
 																<label>
@@ -159,10 +169,10 @@ $(document).ready(function(){
 						else {
 							gelaja_resesif += 	`
 													<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
-														<label>Apakah anak Anda mengalami gejala <strong>`+ data[0] +`</strong> juga?</label>
+														<label>Apakah anak Anda mengalami gejala <strong>`+ data[0]['nama_gejala'] +`</strong> juga?</label>
 														<p class="mt-5 left-align">
 															<label class="mr-5">
-																<input type="radio" class="validate with-gap" name="gejala_resesif" value="`+ data[0] +`">
+																<input type="radio" class="validate with-gap" name="gejala_resesif" value="`+ data[0]['kode_gejala'] +`">
 																<span>Ya</span>
 															</label>
 															<label>
@@ -178,7 +188,7 @@ $(document).ready(function(){
 					$('#gejala_resesif').html(gelaja_resesif);
 				},
 				error:function(x) {
-					// console.log(x.responseText);
+					console.log(x.responseText);
 				}
 			});
 		}
@@ -198,30 +208,27 @@ $(document).ready(function(){
 			let gejala_dominan = $("#gejala_dominan").val();
 			let gejala_resesif = document.forms["msform"]["gejala_resesif[0]"].value;
 			let gejala_resesif2 = document.forms["msform"]["gejala_resesif[1]"].value;
-			
-			console.log(nama,usia,gejala_dominan,gejala_resesif, gejala_resesif2);
+			let gejala_resesif3 = document.forms["msform"]["gejala_resesif[2]"].value;
 			
 			let hasil_pemeriksaan 	= "";
 			
 			$.ajax({
 				url: "./ajax_call.php",
 				type: "POST",
-				data : {"gejala_dominan":gejala_dominan, "gejala_resesif":gejala_resesif, "gejala_resesif2":gejala_resesif2, "kode":1},
+				data : {"gejala_dominan":gejala_dominan, "gejala_resesif":gejala_resesif, "gejala_resesif2":gejala_resesif2, "gejala_resesif3":gejala_resesif3, "kode":2},
 				dataType: "json",
 				success:function(data) {
 					
-					console.log(data);
-					
-					if(data) {
+					if(data.length !== 0) {
 							hasil_pemeriksaan += 	`
 														<div class="col m12 s12">
 															<p class="light-text">Hasil pemeriksaan oleh sistem menunjukan bahwa: Ananda <strong>` + nama + `(` + usia + `)</strong></p>
 														</div>
 														<div class="col m3 s12 offset-m2">
-															<h5 class="py-2">` + data[0] + `%</h5>
+															<h5 class="py-2">` + (data[0]['cf_hasil']*100).toFixed(2) + `%</h5>
 														</div>
 														<div class="col m5 s12">
-															<p class="light-text left-align">Dinyatakan positif terkena penyakit <strong>` + data[1] + `</strong>.</p>
+															<p class="light-text left-align">Dinyatakan positif terkena penyakit <strong>` + data[0]['nama_penyakit'] + `</strong>.</p>
 														</div>
 													`;
 					}
@@ -274,9 +281,32 @@ $(document).ready(function(){
 	})
 });
 
-// FUNGSI 'ON ERROR' KETIKA URL IMG GAGAL DIBUKA ATAU RUSAK
-function imgError(image) {
-	image.onerror 	= "";
-	image.src 		= "./assets/img/image"+ (Math.floor(Math.random() * 3) + 1) +".jpeg";
-	return true;
+function getGejala() {
+	let gejala 	= "<option disabled selected>Gelaja yang dominan</option>";
+	
+	$.ajax({
+		url: "./ajax_call.php",
+		type: "POST",
+		data : {"kode":0},
+		dataType: "json",
+		success:function(data) {
+			
+			let result;
+			if(data.length > 0) {
+				for(i=0; i<data.length; i++) {
+					
+					gejala	+= `<option value='` + data[i][0] + `'>` + data[i][1] + `</option>`;
+				}
+			}
+			else {
+				gejala	= `<option disabled selected>Database kosong!</option>`;
+			}
+			
+			$('#gejala_dominan').html(gejala);
+			$('select').formSelect();
+		},
+		error:function(x) {
+			console.log(x.responseText);
+		}
+	});
 }

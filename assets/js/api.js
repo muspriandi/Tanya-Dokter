@@ -30,3 +30,10 @@ $.getJSON('http://newsapi.org/v2/top-headlines?country=id&category=health&apiKey
 	
 	$(".article").slice(0, 3).show();
 });
+
+// FUNGSI 'ON ERROR' KETIKA URL IMG GAGAL DIBUKA ATAU RUSAK
+function imgError(image) {
+	image.onerror 	= "";
+	image.src 		= "./assets/img/image"+ (Math.floor(Math.random() * 3) + 1) +".jpeg";
+	return true;
+}
