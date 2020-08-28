@@ -22,7 +22,7 @@
 				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<a id="logo-container" href="#" class="brand-logo">
 					<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
-					<span class="hide-on-small-only teal-text lighten-2 pb-3" style="position: relative; top: -12px;">Tanya Dokter<span>
+					<span class="hide-on-small-only judul-text" style="position: relative; top: -12px;">Tanya Dokter</span>
 				</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a class="tooltipped btn waves-effect waves-light pulse" href="#" data-position="bottom" data-tooltip="Masuk Sebagai Pengelola" id="masuk"><i class="material-icons left">exit_to_app</i>Masuk</a></li>
@@ -36,7 +36,7 @@
 			<li>
 				<a href="#perkenalan">
 					<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/> 
-					<span class="teal-text lighten-2 ml-2" style="position: relative; top: -18px; font-size: 20px; font-weight: normal;">Tanya Dokter<span>
+					<span class="teal-text lighten-2 ml-2" style="position: relative; top: -18px; font-size: 20px; font-weight: normal;">Tanya Dokter</span>
 				</a>
 			</li>
 			<li><div class="divider"></div></li>
@@ -51,12 +51,10 @@
 		<div id="perkenalan">
 			<div id="index-banner" class="parallax-container" style="min-height: 425px;">
 				<div class="section no-pad-bot">
-					<div class="container mt-5">
+					<div class="container mt-5 right-align">
 						<br><br>
-						<h1 class="header center teal-text text-lighten-2">Tanya Dokter</h1>
-						<div class="row center">
-							<h5 class="header col s12 light">Aplikasi Diagnosa Penyakit Anak Melalui Pendekatan Sistem Pakar Menggunakan <i>Certainty Factor</i>.</h5>
-						</div>
+						<h1 class="header white-text" style="text-shadow: 3px 3px #00897b;'">Tanya Dokter</h1>
+						<h5 class="header col s12 light-text" style="text-shadow: 2px 2px #757575;">Aplikasi Diagnosa Penyakit Anak Melalui Pendekatan Sistem Pakar Menggunakan <em>Certainty Factor</em>.</h5>
 						<br><br>
 					</div>
 				</div>
@@ -64,23 +62,24 @@
 			</div>
 		</div>
 		
+		<!-- Tab Tambahan -->
 		<div class="row mb-0 divider-card">
 			<div class="col s10 offset-s1 m2 offset-m3">
 				<div class="icon-block card-panel p-3 z-depth-3">
 					<h4 class="center orange-text text-lighten-2"><i class="material-icons">zoom_in</i></h4>
-					<h6 class="center">Speeds up development</h6><br>
+					<h6 class="center">Diagnosa Dengan Dataset Ahli</h6><br>
 				</div>
 			</div>	
 			<div class="col s10 offset-s1 m2">
 				<div class="icon-block card-panel p-3 z-depth-3">
-					<h4 class="center orange-text text-lighten-2"><i class="material-icons">group</i></h4>
-					<h6 class="center">User Experience Focused</h6><br>
+					<h4 class="center orange-text text-lighten-2"><i class="material-icons">flash_on</i></h4>
+					<h6 class="center">Sigap Mendiagnosa Anak Anda</h6><br>
 				</div>
 			</div>
 			<div class="col s10 offset-s1 m2">
 				<div class="icon-block card-panel p-3 z-depth-3">
 					<h4 class="center orange-text text-lighten-2"><i class="material-icons">settings</i></h4>
-					<h6 class="center">Easy to work with and reliable</h6><br>
+					<h6 class="center">Cermat dan Mudah digunakan</h6><br>
 				</div>
 			</div>
 		</div>
@@ -89,55 +88,57 @@
 		<div id="panduan" class="container">
 			<br>
 			<div class="section">
-				<h4 class="light-blue-text text-lighten-2 mb-0">Panduan Pengguna</h4>
-				<p class="light-text mt-0">Panduan untuk menggunaan fitur Tanya Dokter<p>
+				<h4 class="light-blue-text text-lighten-2 mb-0 main-judul">Panduan Pengguna</h4>
+				<p class="light-text mt-0">Panduan untuk menggunaan fitur Tanya Dokter</p>
+				<span class="dots hide-on-small-only" style="right: 100px; background-size: auto 75px;"></span>
 				
 				<!-- Timeline -->
 				<div class="timeline">
 					<div class="timeline-event">
 						<div class="card horizontal timeline-content">
 							<div class="card-image m-3 mt-4">
-								<p class="center orange-text text-lighten-2"><i class="material-icons large">flash_on</i></p>
+								<p class="center orange-text text-lighten-2 pt-3 px-2"><i class="material-icons medium">edit</i></p>
 							</div>
 							<div class="card-stacked">
 								<div class="card-content pl-0">
-									<h5 class="orange-text text-lighten-2 my-2">Pertama</h5>
+									<h5 class="orange-text text-lighten-2 my-2">Pertama <i class="material-icons right pt-1 blue-text text-lighten-2">looks_one</i></h5>
 									<hr>
-									<p>I am a very simple card. I am good at containing small bits of information.</p>
+									<p>Perhatikan anak Anda kemudian catat gejala-gejala yang dialaminya.</p>
 								</div>
 							</div>
 						</div>
-						<div class="timeline-badge blue white-text"><i class="material-icons">flash_on</i></div>
+						<div class="timeline-badge blue white-text"><i class="material-icons">edit</i></div>
+						<span class="squiggle hide-on-small-only" style="left: -100px; background-size: auto 35px;"></span>
 					</div>
 					<div class="timeline-event">
 						<div class="card horizontal timeline-content">
 							<div class="card-image m-3 mt-4">
-								<p class="center orange-text text-lighten-2"><i class="material-icons large">work</i></p>
+								<p class="center orange-text text-lighten-2 mt-4 pt-4 px-2"><i class="material-icons medium">line_weight</i></p>
 							</div>
 							<div class="card-stacked">
 								<div class="card-content pl-0">
-									<h5 class="orange-text text-lighten-2 my-2">Kedua</h5>
+									<h5 class="orange-text text-lighten-2 my-2">Kedua <i class="material-icons right pt-1 red-text text-lighten-2">looks_two</i></h5>
 									<hr>
-									<p>I am a very simple card. .</p>
+									<p>Buatlah urutan dari gejala yang dominan hingga yang resesif muncul pada anak Anda.</p>
 								</div>
 							</div>
 						</div>
-						<div class="timeline-badge red white-text"><i class="material-icons">work</i></div>
+						<div class="timeline-badge red white-text"><i class="material-icons">line_weight</i></div>
 					</div>
 					<div class="timeline-event">
 						<div class="card horizontal timeline-content">
 							<div class="card-image m-3 mt-4">
-								<p class="center orange-text text-lighten-2"><i class="material-icons large">person</i></p>
+								<p class="center orange-text text-lighten-2 pt-3 px-2"><i class="material-icons medium">assignment</i></p>
 							</div>
 							<div class="card-stacked">
 								<div class="card-content pl-0">
-									<h5 class="orange-text text-lighten-2 my-2">Terakhir</h5>
+									<h5 class="orange-text text-lighten-2 my-2">Terakhir <i class="material-icons right pt-1 green-text text-lighten-2">looks_3</i></h5>
 									<hr>
-									<p>I am a very simple card. I am good at containing small bits of information.</p>
+									<p>Isikan gejala yang diderita anak Anda pada menu <a href="#tanya-dokter" class="light-blue-text"><em>Tanya Dokter!</em></a></p>
 								</div>
 							</div>
 						</div>
-						<div class="timeline-badge green white-text"><i class="material-icons">person</i></div>
+						<div class="timeline-badge green white-text"><i class="material-icons">assignment</i></div>
 					</div>
 				</div>
 				<span class="dots hide-on-small-only "></span>
@@ -150,7 +151,7 @@
 			<div class="section">
 				<div class="row">
 					<div class="col s12 center">
-						<h4 class="light-blue-text text-lighten-2 mb-0">Tanya Dok!</h4>
+						<h4 class="light-blue-text text-lighten-2 mb-0 main-judul">Tanya Dok!</h4>
 						<p class="light-text mt-0">Tanya Gejala Yang Diderita Anak</p>
 						
 						<!-- MultiStep Form -->
@@ -163,12 +164,13 @@
 							</ul>
 							<!-- fieldsets -->
 							<fieldset>
+								<div id="header-bar"></div>
 								<h4 class="light-blue-text text-lighten-2 mb-0">Identitas Anak</h4>
 								<p class="light-text mt-0">Mohon untuk mengisi kolom di bawah ini</p>
 								<div class="row my-0 center">
 									<div class="input-field col m4 s12 offset-m4">
 										<i class="material-icons prefix">person</i>
-										<input id="nama_pasien" type="text" name="nama_pasien"/>
+										<input id="nama_pasien" type="text" name="nama_pasien" />
 										<label for="nama_pasien">Nama Lengkap Anak</label>
 									</div>
 									</br>
@@ -181,6 +183,7 @@
 								<button type="button" name="next" class="next btn light-blue text-lighten-2 waves-effect waves-light my-3">Selanjutnya <i class="material-icons right">navigate_next</i></button>
 							</fieldset>
 							<fieldset>
+								<div id="header-bar"></div>
 								<h4 class="light-blue-text text-lighten-2 mb-0">Gejala-gejala</h4>
 								<p class="light-text mt-0">Gejala apa sajakah yang muncul pada anak?</p>
 								<div class="row my-4 center">
@@ -194,10 +197,11 @@
 										<!-- DIISI MELALUI CUSTOM.JS -->
 									</div>
 								</div>
-								<button type="button" name="previous" class="previous btn light-teal text-lighten-2 waves-effect waves-light my-3 mr-3">Kembali <i class="material-icons left">navigate_before</i></button>
-								<button type="submit" name="submit" class="submit btn light-blue text-lighten-2 waves-effect waves-light my-3">Diagnosa! <i class="material-icons right">trending_up</i></button>
+								<button type="button" name="previous" class="previous btn light-teal text-lighten-2 waves-effect waves-light my-3 mx-1">Kembali <i class="material-icons left">navigate_before</i></button>
+								<button type="submit" name="submit" class="submit btn light-blue text-lighten-2 waves-effect waves-light my-3 mx-1">Diagnosa! <i class="material-icons right">trending_up</i></button>
 							</fieldset>
 							<fieldset>
+								<div id="header-bar"></div>
 								<div class="mx-4">
 									<h4 class="light-blue-text text-lighten-2 mb-0">Hasil Pemeriksaan</h4>
 									<div class="row center" id="hasil_pemeriksaan">
@@ -218,7 +222,7 @@
 			<br>
 			<div class="section">
 				<div class="right-align">
-					<h4 class="light-blue-text text-lighten-2 mb-0">Artikel</h4>
+					<h4 class="light-blue-text text-lighten-2 mb-0 main-judul">Artikel</h4>
 					<p class="light-text mt-0">Artikel Kesehatan Menarik</p>
 				</div>
 				<div class="row center" id="article">
@@ -229,8 +233,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Tab Tambahan -->
 		<div class="parallax-container valign-wrapper">
-			<div class="section no-pad-bot">
+			<div class="section no-pad-bot" style="top: unset;">
 			<div class="container">
 				<div class="row center">
 					<div class="col s12 m4 py-2">
@@ -245,7 +251,7 @@
 				</div>
 			</div>
 			</div>
-			<div class="parallax"><img src="./assets/img/background3.jpg" alt="Unsplashed background img 3"></div>
+			<div class="parallax"><img src="./assets/img/background2.jpg" alt="Unsplashed background img 2"></div>
 		</div>
 		
 		<!-- Tab Tentang -->
@@ -267,7 +273,7 @@
 						<ul>
 							<li><a class="white-text" href="http://materializecss.com" target="_blank">- Materialize</a></li>
 							<li><a class="white-text" href="https://jquery.com/" target="_blank">- JQuery</a></li>
-							<li><a class="white-text" href="https://sweetalert.js.org/" target="_blank">- SweetAlert</a></li>
+							<li><a class="white-text" href="https://jquery.com/" target="_blank">- MySQL Database</a></li>
 						</ul>
 					</div>
 				</div>
@@ -291,6 +297,6 @@
 		<script src="./assets/js/materialize.min.js"></script>
 		<script src="./assets/js/api.js"></script>
 		<script src="./assets/js/custom.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+		<script src="./assets/js/jquery.easing.min.js"></script>
 	</body>
 </html>

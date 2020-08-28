@@ -53,38 +53,54 @@ $(document).ready(function(){
 	let animating; //flag to prevent quick multi-click glitches
 	
 	$(".next").click(function(){
-		if(animating) return false;
-		animating = true;
+		let nama = document.forms["msform"]["nama_pasien"].value;
+		let usia = document.forms["msform"]["usia_pasien"].value;
 		
-		current_fs = $(this).parent();
-		next_fs = $(this).parent().next();
-		
-		//activate next step on progressbar using the index of next_fs
-		$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-		
-		//show the next fieldset
-		next_fs.show(); 
-		//hide the current fieldset with style
-		current_fs.animate({opacity: 0}, {
-			step: function(now, mx) {
-				//as the opacity of current_fs reduces to 0 - stored in "now"
-				//1. scale current_fs down to 80%
-				scale = 1 - (1 - now) * 0.2;
-				//2. bring next_fs from the right(50%)
-				left = (now * 50)+"%";
-				//3. increase opacity of next_fs to 1 as it moves in
-				opacity = 1 - now;
-				current_fs.css({'transform': 'scale('+scale+')', 'position': 'absolute' });
-				next_fs.css({'left': left, 'opacity': opacity});
-			}, 
-			duration: 800, 
-			complete: function(){
-				current_fs.hide();
-				animating = false;
-			}, 
-			//this comes from the custom easing plugin
-			easing: 'easeInOutBack'
-		});
+		if(nama !== '' & usia !== '') {
+			
+			if(animating) return false;
+			animating = true;
+			
+			current_fs = $(this).parent();
+			next_fs = $(this).parent().next();
+			
+			//activate next step on progressbar using the index of next_fs
+			$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+			
+			//show the next fieldset
+			next_fs.show(); 
+			//hide the current fieldset with style
+			current_fs.animate({opacity: 0}, {
+				step: function(now, mx) {
+					//as the opacity of current_fs reduces to 0 - stored in "now"
+					//1. scale current_fs down to 80%
+					scale = 1 - (1 - now) * 0.2;
+					//2. bring next_fs from the right(50%)
+					left = (now * 50)+"%";
+					//3. increase opacity of next_fs to 1 as it moves in
+					opacity = 1 - now;
+					current_fs.css({'transform': 'scale('+scale+')', 'position': 'absolute' });
+					next_fs.css({'left': left, 'opacity': opacity});
+				}, 
+				duration: 800, 
+				complete: function(){
+					current_fs.hide();
+					animating = false;
+				}, 
+				//this comes from the custom easing plugin
+				easing: 'easeInOutBack'
+			});
+		}
+		else {
+			if(nama === '') {
+				M.toast({html: 'Silakan isi kolom&nbsp;<strong>Nama Lengkap Anak</strong>'});
+				$('#nama_pasien').focus();
+			}
+			else {
+				M.toast({html: 'Silakan isi kolom&nbsp;<strong>Usia Anak (tahun)</strong>'});
+				$('#usia_pasien').focus();
+			}
+		}
 	});
 	
 	$(".previous").click(function(){
@@ -152,7 +168,7 @@ $(document).ready(function(){
 								gelaja_resesif += 	`
 														<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
 															<label>Apakah anak Anda mengalami gejala <strong>`+ data[i]['nama_gejala'] +`</strong> juga?</label>
-															<p class="mt-5 left-align">
+															<p class="mt-5 pt-2 left-align">
 																<label class="mr-5">
 																	<input type="radio" class="validate with-gap" name="gejala_resesif[`+ [i] +`]" value="`+ data[i]['kode_gejala'] +`">
 																	<span>Ya</span>
@@ -170,7 +186,7 @@ $(document).ready(function(){
 							gelaja_resesif += 	`
 													<div class="input-field col m6 s12 offset-m3 mt-2 mb-0">
 														<label>Apakah anak Anda mengalami gejala <strong>`+ data[0]['nama_gejala'] +`</strong> juga?</label>
-														<p class="mt-5 left-align">
+														<p class="mt-5 pt-2 left-align">
 															<label class="mr-5">
 																<input type="radio" class="validate with-gap" name="gejala_resesif" value="`+ data[0]['kode_gejala'] +`">
 																<span>Ya</span>
@@ -198,7 +214,7 @@ $(document).ready(function(){
 		
 		if($("#gejala_dominan").val().length === 0) {
 			
-			console.log("VALIDASI DULU");
+			M.toast({html: 'Silakan pilih &nbsp;<strong>Gejala yang dominan</strong>'});
 			
 			return false;
 		}
@@ -219,16 +235,24 @@ $(document).ready(function(){
 				dataType: "json",
 				success:function(data) {
 					
+					let persentase = (data[0]['cf_hasil']*100).toFixed(2);
+					if(persentase >= 100) {
+						persentase = 98;
+					}
+					
 					if(data.length !== 0) {
 							hasil_pemeriksaan += 	`
 														<div class="col m12 s12">
 															<p class="light-text">Hasil pemeriksaan oleh sistem menunjukan bahwa: Ananda <strong>` + nama + `(` + usia + `)</strong></p>
 														</div>
 														<div class="col m3 s12 offset-m2">
-															<h5 class="py-2">` + (data[0]['cf_hasil']*100).toFixed(2) + `%</h5>
+															<h4 class="py-1">` + persentase + `%</h4>
 														</div>
 														<div class="col m5 s12">
-															<p class="light-text left-align">Dinyatakan positif terkena penyakit <strong>` + data[0]['nama_penyakit'] + `</strong>.</p>
+															<p class="light-text left-align">Kemungkinan dinyatakan terkena penyakit <strong>` + data[0]['nama_penyakit'] + `</strong>.</p>
+														</div>
+														<div class="col m8 offset-m2 s12 pt-3">
+															<small class="light-text">Hasil di atas merupakan keluaran dari proses yang dilakukan oleh sistem, ada kemungkinan bahwa hasil tersebut adalah salah(<em>invalid</em>). Untuk lebih lanjut silakan hubungi dokter.</small>
 														</div>
 													`;
 					}

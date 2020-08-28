@@ -466,7 +466,7 @@ footer.page-footer {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 4;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
 
@@ -514,6 +514,20 @@ nav {
 	transition: 0.35s all ease;
 }
 
+.main-judul {
+	text-shadow: 1.3px 1.3px #9e9e9e;
+ }
+
+nav .judul-text {
+	color: white;
+	text-shadow: 2px 2px #212121;
+}
+
+.scrolled .judul-text {
+	color: #26a69a;
+	text-shadow: unset;
+}
+
 .scrolled {
 	color: #4db6ac;
 	height: 60px;
@@ -527,10 +541,20 @@ nav {
     position: relative;
 }
 
+fieldset #header-bar {
+	height: 8px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 8px 8px 0 0;
+	background-image: url("../img/header-bar.jpg");
+}
+
 #msform fieldset {
     background: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 8px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 20px 30px;
     box-sizing: border-box;
