@@ -8,6 +8,7 @@ $(document).ready(function(){
 	$('.tooltipped').tooltip();
     $('.parallax').parallax();
 	$('select').formSelect();
+	$('.modal').modal();
 	
 	getGejala();
 	
@@ -93,11 +94,11 @@ $(document).ready(function(){
 		}
 		else {
 			if(nama === '') {
-				M.toast({html: 'Silakan isi kolom&nbsp;<strong>Nama Lengkap Anak</strong>'});
+				M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Nama Lengkap Anak</strong>'});
 				$('#nama_pasien').focus();
 			}
 			else {
-				M.toast({html: 'Silakan isi kolom&nbsp;<strong>Usia Anak (tahun)</strong>'});
+				M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Usia Anak (tahun)</strong>'});
 				$('#usia_pasien').focus();
 			}
 		}
@@ -181,6 +182,8 @@ $(document).ready(function(){
 														</div>
 													`;
 							}
+							
+							gelaja_resesif += `<input id="count_resesif" value="`+ x +`" type="hidden" readonly required />`;
 						}
 						else {
 							gelaja_resesif += 	`
@@ -188,15 +191,16 @@ $(document).ready(function(){
 														<label>Apakah anak Anda mengalami gejala <strong>`+ data[0]['nama_gejala'] +`</strong> juga?</label>
 														<p class="mt-5 pt-2 left-align">
 															<label class="mr-5">
-																<input type="radio" class="validate with-gap" name="gejala_resesif" value="`+ data[0]['kode_gejala'] +`">
+																<input type="radio" class="validate with-gap" name="gejala_resesif[0]" value="`+ data[0]['kode_gejala'] +`">
 																<span>Ya</span>
 															</label>
 															<label>
-																<input type="radio" class="validate with-gap" name="gejala_resesif" value="">
+																<input type="radio" class="validate with-gap" name="gejala_resesif[0]" value="">
 																<span>Tidak</span>
 															</label>
 														</p>
 													</div>
+													<input id="count_resesif" value="1" type="hidden" readonly required />
 												`;
 						}
 					}
@@ -214,7 +218,7 @@ $(document).ready(function(){
 		
 		if($("#gejala_dominan").val().length === 0) {
 			
-			M.toast({html: 'Silakan pilih &nbsp;<strong>Gejala yang dominan</strong>'});
+			M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan pilih &nbsp;<strong>Gejala yang dominan</strong>'});
 			
 			return false;
 		}
@@ -222,10 +226,21 @@ $(document).ready(function(){
 			let nama = document.forms["msform"]["nama_pasien"].value;
 			let usia = document.forms["msform"]["usia_pasien"].value;
 			let gejala_dominan = $("#gejala_dominan").val();
-			let gejala_resesif = document.forms["msform"]["gejala_resesif[0]"].value;
-			let gejala_resesif2 = document.forms["msform"]["gejala_resesif[1]"].value;
-			let gejala_resesif3 = document.forms["msform"]["gejala_resesif[2]"].value;
+			let count_resesif = $("#count_resesif").val();
+			let gejala_resesif;
+			let gejala_resesif2;
+			let gejala_resesif3;
+			if(count_resesif >= 1) {
+				gejala_resesif = document.forms["msform"]["gejala_resesif[0]"].value;
+			}
+			if(count_resesif >= 2) {
+				gejala_resesif2 = document.forms["msform"]["gejala_resesif[1]"].value;
+			}
+			if(count_resesif >= 3) {
+				gejala_resesif3 = document.forms["msform"]["gejala_resesif[2]"].value;
+			}
 			
+			console.log(count_resesif);
 			let hasil_pemeriksaan 	= "";
 			
 			$.ajax({
@@ -303,6 +318,94 @@ $(document).ready(function(){
 			return false;
 		}
 	})
+});
+
+$("#daftar_admin").click(function(){
+	
+	let username 		= document.forms["form_daftar"]["username"].value;
+	let kata_sandi 		= document.forms["form_daftar"]["kata_sandi"].value;
+	let c_kata_sandi 	= document.forms["form_daftar"]["c_kata_sandi"].value;
+	
+	if(username === '') {
+		M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Username</strong>'});
+		$('#username2').focus();
+	}
+	else {
+		if(kata_sandi === '') {
+			M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Kata Sandi</strong>'});
+			$('#kata_sandi2').focus();
+		}
+		else {
+			if(c_kata_sandi === '') {
+				M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Konfrimasi Kata Sandi</strong>'});
+				$('#c_kata_sandi2').focus();
+			}
+			else {
+				if(kata_sandi === c_kata_sandi) {
+					$.ajax({
+						url: "./ajax_call.php",
+						type: "POST",
+						data : {"username":username, "kata_sandi":kata_sandi, "kode":3},
+						dataType: "json",
+						success:function(data) {
+							M.toast({html: data});
+							$('#modal_daftar').modal('close');
+						},
+						error:function(x) {
+							console.log(x.responseText);
+						}
+					});
+				}
+				else {
+					M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;<strong>Konfrimasi Kata Sandi</strong>&nbsp; tidak sesuai'});
+					$('#c_kata_sandi2').focus();
+				}
+			}
+		}
+	}
+		
+	return false;
+});
+
+$("#masuk_admin").click(function(){
+	
+	let username 		= document.forms["form_masuk"]["username"].value;
+	let kata_sandi 		= document.forms["form_masuk"]["kata_sandi"].value;
+	
+	if(username === '') {
+		M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Username</strong>'});
+		$('#username').focus();
+	}
+	else {
+		if(kata_sandi === '') {
+			M.toast({html: '<i class="material-icons left">info_outline</i>&nbsp;Silakan isi kolom&nbsp;<strong>Kata Sandi</strong>'});
+			$('#kata_sandi').focus();
+		}
+		else {
+			$.ajax({
+				url: "./ajax_call.php",
+				type: "POST",
+				data : {"username":username, "kata_sandi":kata_sandi, "kode":4},
+				dataType: "json",
+				success:function(data) {
+					
+					M.toast({html: data[0]});
+					
+					if(data[1] === 'berhasil') {
+						$('#modal_masuk').modal('close');
+						setTimeout(function(){
+							window.location.replace("./pages/index.php");
+						}, 1500);
+					};
+				},
+				error:function(x) {
+					console.log(x.responseText);
+				}
+			});
+		}
+	}
+		
+	return false;
 });
 
 function getGejala() {

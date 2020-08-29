@@ -155,5 +155,64 @@
 			
 			die($results);
 		}
+		
+		if($kode == 3) {
+			$username 		= $_POST['username'];
+			$kata_sandi 	= $_POST['kata_sandi'];
+			
+			$sql_cek = "SELECT COUNT(username) FROM pengelola WHERE username = '". $username ."'";
+			$statement_cek = $db->prepare($sql_cek);
+			$statement_cek->execute();
+			if($statement_cek->fetchColumn() == 0) {
+				$sql = "INSERT INTO pengelola(username, kata_sandi) VALUES ('". $username ."','". $kata_sandi ."')";
+				$statement = $db->prepare($sql);
+				$statement->execute();
+				
+				$pesan = 	json_encode(
+								"<i class='material-icons left'>check_circle</i>&nbsp;<strong>Berhasil</strong>&nbsp;Menambahkan pengelola"
+							);
+			}
+			else {
+				$pesan = 	json_encode(
+								"<i class='material-icons left'>info_outline</i>&nbsp;<strong>Username pengelola&nbsp;</strong>telah terdaftar"
+							);
+			}
+			die($pesan);
+		}
+		
+		if($kode == 4) {
+			$username 		= $_POST['username'];
+			$kata_sandi 	= $_POST['kata_sandi'];
+			
+			$sql_cek = "SELECT COUNT(username) as jumlah,kata_sandi FROM pengelola WHERE username = '". $username ."'";
+			$statement_cek = $db->prepare($sql_cek);
+			$statement_cek->execute();
+			$result = $statement_cek->fetch();
+			
+			if($result['jumlah'] == 1) {
+
+				if($result['kata_sandi']  == $kata_sandi) {
+					
+					$pesan = 	json_encode(
+									array("<i class='material-icons left'>check_circle</i>&nbsp;<strong>Berhasil</strong>&nbsp;Masuk!","berhasil")
+								);
+					
+					session_start();
+					$_SESSION['username_pengelola'] = $username;
+				}
+				else {
+					$pesan = 	json_encode(
+									array("<i class='material-icons left'>info_outline</i>&nbsp;<strong>Username</strong>&nbsp;atau&nbsp;<strong>Kata Sandi&nbsp;</strong>&nbsp;tidak sesuai","gagal")
+								);
+				}
+			}
+			else {
+				$pesan = 	json_encode(
+								array("<i class='material-icons left'>info_outline</i>&nbsp;<strong>Username</strong>&nbsp;atau&nbsp;<strong>Kata Sandi&nbsp;</strong>&nbsp;tidak sesuai","gagal")
+							);
+			}
+			
+			die($pesan);
+		}
 	}
 ?>

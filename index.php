@@ -1,5 +1,6 @@
 <?php
-	include('koneksi.php');
+	session_start();
+	session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +25,15 @@
 					<img class="mt-1" src="./assets/img/icons/medical-192x192.png" alt="Logo" width="50px;"/>
 					<span class="hide-on-small-only judul-text" style="position: relative; top: -12px;">Tanya Dokter</span>
 				</a>
-				<ul class="right hide-on-med-and-down">
-					<li><a class="tooltipped btn waves-effect waves-light pulse" href="#" data-position="bottom" data-tooltip="Masuk Sebagai Pengelola" id="masuk"><i class="material-icons left">exit_to_app</i>Masuk</a></li>
+				<ul class="right">
+					<li><a class="tooltipped btn waves-effect waves-light pulse modal-trigger" href="#modal_masuk" data-position="bottom" data-tooltip="Masuk Sebagai Pengelola" id="masuk"><i class="material-icons left mr-0">exit_to_app</i><span class="hide-on-med-and-down">Masuk</span></a></li>
 				</ul>
 			</div>
 			<div class="progress-container" style="display: none;">
 				<div class="progress-bar teal lighten-2"></div>
 			</div>
 		</nav>
+		
 		<ul id="slide-out" class="sidenav">
 			<li>
 				<a href="#perkenalan">
@@ -46,6 +48,66 @@
 			<li><a class="waves-effect" href="#artikel">Artikel</a></li>
 			<li><a class="waves-effect" href="#tentang">Tentang</a></li>
 		</ul>
+		
+		<!-- Modal Masuk -->
+		<div id="modal_masuk" class="modal">
+			<form id="form_masuk">
+				<div class="modal-content center pb-0">
+					<h4 class="teal-text text-lighten-2 mb-0 main-judul">Masuk</h4>
+					<p class="light-text mt-0" style="line-height: unset;">Masuk sebagai pengelola sistem</p>
+					<div class="row my-2 mb-0">
+						<div class="input-field col m8 s12 offset-m2 my-2">
+							<i class="material-icons prefix">account_box</i>
+							<input id="username" type="text" name="username" maxlength="20"/>
+							<label for="username"><em>Username</em></label>
+						</div>
+						</br>
+						<div class="input-field col m8 s12 offset-m2 my-2">
+							<i class="material-icons prefix">lock</i>
+							<input id="kata_sandi" type="password" name="kata_sandi" />
+							<label for="kata_sandi"><em>Kata Sandi</em></label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" style="height: auto;">
+					<a href="#modal_daftar" class="modal-close modal-trigger btn waves-effect waves-light blue mb-3 mt-1 mr-2">Daftar</a>
+					<button type="submit" class="modal-close modal-trigger btn waves-effect waves-light teal mb-3 mt-1 mr-3" id="masuk_admin"><i class="material-icons left" style="height: unset; line-height: unset;">exit_to_app</i>Masuk</button>
+				</div>
+			</form>
+		</div>
+					
+		<!-- Modal Daftar -->
+		<div id="modal_daftar" class="modal">
+			<form id="form_daftar">
+				<div class="modal-content center pb-0">
+					<h4 class="light-blue-text text-lighten-2 mb-0 main-judul">Daftar</h4>
+					<p class="light-text mt-0" style="line-height: unset;">Registrasi akun sebagai pengelola sistem</p>
+					<div class="row my-2 mb-0">
+						<div class="input-field col m8 s12 offset-m2 my-2">
+							<i class="material-icons prefix">account_box</i>
+							<input id="username2" type="text" name="username" maxlength="20"/>
+							<label for="username2"><em>Username</em></label>
+						</div>
+						</br>
+						<div class="input-field col m8 s12 offset-m2 my-2">
+							<i class="material-icons prefix">lock_outline</i>
+							<input id="kata_sandi2" type="password" name="kata_sandi" />
+							<label for="kata_sandi2"><em>Kata Sandi</em></label>
+						</div>
+						</br>
+						<div class="input-field col m8 s12 offset-m2 my-2">
+							<i class="material-icons prefix">lock</i>
+							<input id="c_kata_sandi2" type="password" name="c_kata_sandi" />
+							<label for="c_kata_sandi2"><em>Konfirmasi Kata Sandi</em></label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" style="height: auto;">
+					<a href="#modal_masuk" class="modal-close modal-trigger btn waves-effect waves-light teal mb-3 mt-1 mr-2">Masuk</a>
+					<button type="submit" class="modal-close modal-trigger btn waves-effect waves-light blue mb-3 mt-1 mr-3" id="daftar_admin"><i class="material-icons left" style="height: unset; line-height: unset;">person_add</i>Daftar</button>
+				</div>
+			</form>
+		</div>
 		
 		<!-- Tab Perkenalan -->
 		<div id="perkenalan">
@@ -171,13 +233,13 @@
 									<div class="input-field col m4 s12 offset-m4">
 										<i class="material-icons prefix">person</i>
 										<input id="nama_pasien" type="text" name="nama_pasien" />
-										<label for="nama_pasien">Nama Lengkap Anak</label>
+										<label for="nama_pasien"><em>Nama Lengkap Anak</em></label>
 									</div>
 									</br>
 									<div class="input-field col m4 s12 offset-m4">
 										<i class="material-icons prefix">account_box</i>
 										<input id="usia_pasien" type="number" min="1" max="10" name="usia_pasien" />
-										<label for="usia_pasien">Usia Anak (Tahun)</label>
+										<label for="usia_pasien"><em>Usia Anak (Tahun)</em></label>
 									</div>
 								</div>
 								<button type="button" name="next" class="next btn light-blue text-lighten-2 waves-effect waves-light my-3">Selanjutnya <i class="material-icons right">navigate_next</i></button>
