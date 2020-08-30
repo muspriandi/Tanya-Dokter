@@ -240,7 +240,6 @@ $(document).ready(function(){
 				gejala_resesif3 = document.forms["msform"]["gejala_resesif[2]"].value;
 			}
 			
-			console.log(count_resesif);
 			let hasil_pemeriksaan 	= "";
 			
 			$.ajax({

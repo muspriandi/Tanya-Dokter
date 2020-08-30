@@ -8,8 +8,9 @@
 			
 			try {
 				$username		= $_POST['username'];
+				$kata_sandi		= $_POST['kata_sandi'];
 				
-				$sql = "DELETE FROM pengelola WHERE username='". $username ."'";
+				$sql = "INSERT INTO pengelola(username, kata_sandi) VALUES ('" .$username ."', '" .$kata_sandi ."')";
 				$statement = $db->prepare($sql);
 				$statement->execute();
 				
@@ -29,10 +30,12 @@
 		}
 		
 		if($kode == 1) {
-			try {
-				$kode_gejala	= $_POST['kode_gejala'];
 			
-				$sql = "DELETE FROM gejala WHERE kode_gejala='". $kode_gejala ."'";
+			try {
+				$kode_gejala		= $_POST['kode_gejala'];
+				$nama_gejala		= $_POST['nama_gejala'];
+				
+				$sql = "INSERT INTO gejala(kode_gejala, nama_gejala) VALUES ('" .$kode_gejala ."', '" .$nama_gejala ."')";
 				$statement = $db->prepare($sql);
 				$statement->execute();
 				
@@ -55,8 +58,9 @@
 			
 			try {
 				$kode_penyakit	= $_POST['kode_penyakit'];
+				$nama_penyakit	= $_POST['nama_penyakit'];
 				
-				$sql = "DELETE FROM penyakit WHERE kode_penyakit='". $kode_penyakit ."'";
+				$sql = "INSERT INTO penyakit(kode_penyakit, nama_penyakit) VALUES ('" .$kode_penyakit ."', '" .$nama_penyakit ."')";
 				$statement = $db->prepare($sql);
 				$statement->execute();
 				
@@ -78,9 +82,11 @@
 		if($kode == 3) {
 			
 			try {
-				$id_diagnosa	= $_POST['id_diagnosa'];
+				$kode_penyakit	= $_POST['penyakit'];
+				$kode_gejala	= $_POST['gejala'];
+				$cf				= $_POST['cf'];
 				
-				$sql = "DELETE FROM diagnosa WHERE id_diagnosa='". $id_diagnosa ."'";
+				$sql = "INSERT INTO diagnosa(kode_penyakit, kode_gejala, cf) VALUES ('" .$kode_penyakit ."', '" .$kode_gejala ."','" .$cf ."')";
 				$statement = $db->prepare($sql);
 				$statement->execute();
 				

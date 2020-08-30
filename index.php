@@ -10,7 +10,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<meta name="description" content="Tanya Dokter" />
-		
+		<meta name="dicoding:email" content="1.muspriandi@gmail.com">
+		 
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -268,6 +269,10 @@
 									<h4 class="light-blue-text text-lighten-2 mb-0">Hasil Pemeriksaan</h4>
 									<div class="row center" id="hasil_pemeriksaan">
 										<!-- DIISI MELALUI CUSTOM.JS -->
+										<br>
+										<h5>Hasil tidak diketahui.</h5>
+										<p>Sumber daya ahli yang dimiliki sistem kurang.</p>
+										<small>Silakan hubungi dokter untuk lebih lanjut.</small>
 									</div>
 								</div>
 								<button type="button" name="previous" class="previous btn light-teal text-lighten-2 waves-effect waves-light my-3">Kembali <i class="material-icons left">navigate_before</i></button>
